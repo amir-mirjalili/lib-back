@@ -44,7 +44,7 @@ export const edit = async (req: Request, res: Response) => {
   const book = new BookUpdate();
   const response = await book.edit(parseInt(req.params.id), req.body);
   return ApiRes(res, {
-    status: response.is_success ? 200 : 500,
+    status: response.is_success ? 200 : 404,
     data: response.data,
     msg: response.msg,
   });
@@ -54,7 +54,7 @@ export const remove = async (req: Request, res: Response) => {
   const book = new BookRemove();
   const response = await book.delete(parseInt(req.params.id));
   return ApiRes(res, {
-    status: response.is_success ? 200 : 500,
+    status: response.is_success ? 200 : 404,
     data: response.data,
     msg: response.msg,
   });
