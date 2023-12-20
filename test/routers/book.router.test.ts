@@ -5,8 +5,15 @@ import app from "../../providers/app";
 const book_routes = "/books";
 describe("book routes tests", () => {
   it("should return error 401", async () => {
-    const response = await request(app).post(book_routes);
+    const response = await request(app).post(`${book_routes}/auth`);
     expect(response.status).to.equal(401);
+  });
+
+  it("should return error 412 ", async () => {
+    const response = await request(app)
+      .post(book_routes)
+      .send({ author: "test" });
+    expect(response.status).to.equal(412);
   });
 
   it("should return books with status 200", async () => {

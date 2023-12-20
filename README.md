@@ -1,6 +1,7 @@
 ## Description
 
 Local Library Management System
+
 ---
 
 ## Installation
@@ -8,6 +9,8 @@ Local Library Management System
 ```bash
 $ npm i
 ```
+
+make a copy of .env.example and rename the copy file to .env and change the values.
 
 ## Running the app
 
@@ -21,4 +24,14 @@ $ npm run dev
 # production mode
 $ npm run build
 $ npm run prod
+```
+
+## Testing the app
+
+```bash
+# linux
+$ npm run test
+
+# windows
+$ npm run test:w
 ```

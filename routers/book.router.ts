@@ -8,9 +8,18 @@ const BookRoutes = express.Router();
 
 const route = "/books";
 
+/**
+ * by this route user force to log-in first.
+ */
+BookRoutes.post(
+  `${route}/auth`,
+  [AuthMiddleware, InputValidator(BookValidator.create, "body")],
+  BookController.insert
+);
+
 BookRoutes.post(
   route,
-  [AuthMiddleware, InputValidator(BookValidator.create, "body")],
+  [InputValidator(BookValidator.create, "body")],
   BookController.insert
 );
 
