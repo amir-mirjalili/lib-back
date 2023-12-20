@@ -21,4 +21,9 @@ BookRoutes.get(
   BookController.search
 );
 
+BookRoutes.put(
+  `${route}/:id`,
+  [InputValidator(BookValidator.update, "body")],
+  BookController.edit
+);
 export default BookRoutes;

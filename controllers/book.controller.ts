@@ -2,6 +2,7 @@ import { ApiRes } from "../providers/restapi/status";
 import { Request, Response } from "express";
 import { BookInsert } from "../services/books/book_insert";
 import { BookInfo } from "../services/books/book_info";
+import { BookUpdate } from "../services/books/book_update";
 
 export const insert = async (req: Request, res: Response) => {
   const book = new BookInsert();
@@ -35,5 +36,15 @@ export const search = async (req: Request, res: Response) => {
   return ApiRes(res, {
     status: response.is_success ? 200 : 500,
     data: response.data,
+  });
+};
+
+export const edit = async (req: Request, res: Response) => {
+  const book = new BookUpdate();
+  const response = await book.edit(parseInt(req.params.id), req.body);
+  return ApiRes(res, {
+    status: response.is_success ? 200 : 500,
+    data: response.data,
+    msg: response.msg,
   });
 };

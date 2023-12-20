@@ -11,4 +11,9 @@ export const BookValidator = {
     author: Joi.string(),
     genre: Joi.string(),
   }),
+  update: Joi.object({
+    title: Joi.string(),
+    author: Joi.string(),
+    genre: Joi.string(),
+  }),
 };
