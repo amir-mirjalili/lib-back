@@ -20,5 +20,5 @@ $ npm run dev
 
 # production mode
 $ npm run build
-$ npm run start-server
+$ npm run prod
 ```
