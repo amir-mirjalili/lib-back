@@ -6,4 +6,9 @@ export const BookValidator = {
     genre: Joi.string().required(),
     title: Joi.string().required(),
   }),
+  search: Joi.object({
+    title: Joi.string(),
+    author: Joi.string(),
+    genre: Joi.string(),
+  }),
 };

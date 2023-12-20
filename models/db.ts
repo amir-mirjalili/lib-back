@@ -8,7 +8,7 @@ export interface Book {
   genre: string;
 }
 
-const dbFilePath = path.join(__dirname, "db.json");
+const dbFilePath = path.join(__dirname, "../db.json");
 
 export async function readDatabase(): Promise<Book[]> {
   try {

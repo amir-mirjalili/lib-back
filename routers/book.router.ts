@@ -10,7 +10,15 @@ const route = "/books";
 BookRoutes.post(
   route,
   [InputValidator(BookValidator.create, "body")],
-  BookController.book_insert
+  BookController.insert
+);
+
+BookRoutes.get(route, BookController.get_all);
+
+BookRoutes.get(
+  `${route}/search`,
+  [InputValidator(BookValidator.search, "query")],
+  BookController.search
 );
 
 export default BookRoutes;

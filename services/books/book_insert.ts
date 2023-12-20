@@ -20,6 +20,7 @@ export class BookInsert {
       return {
         is_success: true,
         msg: "successfully inserted",
+        data: newBook,
       };
     } catch (e) {
       console.log(e);
