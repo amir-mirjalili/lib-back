@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { BookInsert } from "../services/books/book_insert";
 import { BookInfo } from "../services/books/book_info";
 import { BookUpdate } from "../services/books/book_update";
+import { BookRemove } from "../services/books/book_remove";
 
 export const insert = async (req: Request, res: Response) => {
   const book = new BookInsert();
@@ -42,6 +43,16 @@ export const search = async (req: Request, res: Response) => {
 export const edit = async (req: Request, res: Response) => {
   const book = new BookUpdate();
   const response = await book.edit(parseInt(req.params.id), req.body);
+  return ApiRes(res, {
+    status: response.is_success ? 200 : 500,
+    data: response.data,
+    msg: response.msg,
+  });
+};
+
+export const remove = async (req: Request, res: Response) => {
+  const book = new BookRemove();
+  const response = await book.delete(parseInt(req.params.id));
   return ApiRes(res, {
     status: response.is_success ? 200 : 500,
     data: response.data,

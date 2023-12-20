@@ -26,4 +26,6 @@ BookRoutes.put(
   [InputValidator(BookValidator.update, "body")],
   BookController.edit
 );
+
+BookRoutes.delete(`${route}/:id`, BookController.remove);
 export default BookRoutes;

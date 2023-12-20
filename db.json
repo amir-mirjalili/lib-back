@@ -4,5 +4,17 @@
     "author": "Gorge RR Martin",
     "genre": "Fantasy",
     "title": "Game Of Thrones No2"
+  },
+  {
+    "id": 3,
+    "author": "Gorge RR Martin",
+    "genre": "Fantasy",
+    "title": "Game Of Thrones No3"
+  },
+  {
+    "id": 4,
+    "author": "Sam Lake",
+    "genre": "Horror",
+    "title": "Alan Wake"
   }
 ]
