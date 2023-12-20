@@ -68,4 +68,24 @@ export class BookInfo {
       };
     }
   }
+
+  async getById(id: number): Promise<RestApi.ObjectResInterface> {
+    try {
+      const existingBooks = await readDatabase();
+
+      const filteredBook = existingBooks.find((book) => book.id === id);
+
+      return {
+        is_success: true,
+        msg: "Successfully fetched filtered books",
+        data: filteredBook,
+      };
+    } catch (e) {
+      console.error(e);
+      return {
+        is_success: false,
+        msg: "Internal error",
+      };
+    }
+  }
 }

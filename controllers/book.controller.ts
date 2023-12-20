@@ -63,3 +63,12 @@ export const remove = async (req: Request, res: Response) => {
     msg: response.msg,
   });
 };
+export const getById = async (req: Request, res: Response) => {
+  const book = new BookInfo();
+  const response = await book.getById(parseInt(req.params.id));
+  return ApiRes(res, {
+    status: response.is_success ? 200 : 404,
+    data: response.data,
+    msg: response.msg,
+  });
+};
