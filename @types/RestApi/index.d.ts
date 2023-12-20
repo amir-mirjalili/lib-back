@@ -12,10 +12,5 @@ declare global {
       data?: any;
       msg?: string;
     }
-    interface RestApiTokenInterface {
-      public_id: string;
-      public_token: string;
-      expire_at: number;
-    }
   }
 }

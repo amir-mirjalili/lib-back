@@ -2,6 +2,7 @@ import express from "express";
 import * as BookController from "../controllers/book.controller";
 import { InputValidator } from "../middlewares/input-validator";
 import { BookValidator } from "../validator/book.validator";
+import { AuthMiddleware } from "../middlewares/auth.middleware";
 
 const BookRoutes = express.Router();
 
@@ -9,7 +10,7 @@ const route = "/books";
 
 BookRoutes.post(
   route,
-  [InputValidator(BookValidator.create, "body")],
+  [AuthMiddleware, InputValidator(BookValidator.create, "body")],
   BookController.insert
 );
 

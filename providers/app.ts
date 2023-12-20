@@ -3,6 +3,7 @@ import compression from "compression";
 import { Cors } from "./restapi/cors";
 import { ApiRes } from "./restapi/status";
 import BookRoutes from "../routers/book.router";
+import UserRoots from "../routers/user.router";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(Cors);
 
 // App routers
 app.use(BookRoutes);
+app.use(UserRoots);
 app.get("/", (req, res) => {
   ApiRes(res, <RestApi.ResInterface>{
     status: 200,
