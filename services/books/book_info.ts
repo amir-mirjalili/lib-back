@@ -1,14 +1,21 @@
 import { readDatabase } from "../../models/db";
 
 export class BookInfo {
-  async getAll(): Promise<RestApi.ObjectResInterface> {
+  async getAll(query: any): Promise<RestApi.ObjectResInterface> {
     try {
-      const existingBooks = await readDatabase();
+      const { page = 1, pageSize = 2 } = query;
 
+      const existingBooks = await readDatabase();
+      const startIdx = (page - 1) * pageSize;
+      const endIdx = startIdx + parseInt(pageSize, 10);
+      const paginatedBooks = existingBooks.slice(startIdx, endIdx);
       return {
         is_success: true,
         msg: "successfully inserted",
-        data: existingBooks,
+        data: {
+          data: paginatedBooks,
+          total: existingBooks.length,
+        },
       };
     } catch (e) {
       console.log(e);
@@ -19,11 +26,15 @@ export class BookInfo {
     }
   }
 
-  async search(filter: {
-    title?: string;
-    author?: string;
-    genre?: string;
-  }): Promise<RestApi.ObjectResInterface> {
+  async search(
+    filter: {
+      title?: string;
+      author?: string;
+      genre?: string;
+    },
+    page: number,
+    pageSize: number
+  ): Promise<RestApi.ObjectResInterface> {
     try {
       const existingBooks = await readDatabase();
 
@@ -34,10 +45,17 @@ export class BookInfo {
           (!filter.genre || book.genre.includes(filter.genre))
       );
 
+      const startIdx = (page - 1) * pageSize;
+      const endIdx = startIdx + pageSize;
+      const paginatedBooks = filteredBooks.slice(startIdx, endIdx);
+
       return {
         is_success: true,
         msg: "Successfully fetched filtered books",
-        data: filteredBooks,
+        data: {
+          data: paginatedBooks,
+          total: filteredBooks.length,
+        },
       };
     } catch (e) {
       console.error(e);

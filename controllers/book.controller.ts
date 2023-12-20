@@ -20,7 +20,7 @@ export const insert = async (req: Request, res: Response) => {
 
 export const get_all = async (req: Request, res: Response) => {
   const book = new BookInfo();
-  const response = await book.getAll();
+  const response = await book.getAll(req.query);
   return ApiRes(res, {
     status: response.is_success ? 200 : 500,
     data: response.data,
@@ -29,11 +29,15 @@ export const get_all = async (req: Request, res: Response) => {
 
 export const search = async (req: Request, res: Response) => {
   const book = new BookInfo();
-  const response = await book.search({
-    title: req.query.title as string,
-    author: req.query.author as string,
-    genre: req.query.genre as string,
-  });
+  const response = await book.search(
+    {
+      title: req.query.title as string,
+      author: req.query.author as string,
+      genre: req.query.genre as string,
+    },
+    parseInt(req.query.page as string),
+    parseInt(req.query.pageSize as string)
+  );
   return ApiRes(res, {
     status: response.is_success ? 200 : 500,
     data: response.data,

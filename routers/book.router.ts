@@ -1,4 +1,4 @@
-import express from "express";
+import express, { query } from "express";
 import * as BookController from "../controllers/book.controller";
 import { InputValidator } from "../middlewares/input-validator";
 import { BookValidator } from "../validator/book.validator";
@@ -14,7 +14,11 @@ BookRoutes.post(
   BookController.insert
 );
 
-BookRoutes.get(route, BookController.get_all);
+BookRoutes.get(
+  route,
+  [InputValidator(BookValidator.getAll, "query")],
+  BookController.get_all
+);
 
 BookRoutes.get(
   `${route}/search`,
