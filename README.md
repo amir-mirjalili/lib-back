@@ -1,7 +1,7 @@
 ## Description
 
 Local Library Management System
-
+note that this repository work with another repository that provide the fron-end side to use that checkout https://github.com/amir-mirjalili/lib-front
 ---
 
 ## Installation
