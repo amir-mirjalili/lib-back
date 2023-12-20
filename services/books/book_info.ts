@@ -40,9 +40,12 @@ export class BookInfo {
 
       const filteredBooks = existingBooks.filter(
         (book) =>
-          (!filter.title || book.title.includes(filter.title)) &&
-          (!filter.author || book.author.includes(filter.author)) &&
-          (!filter.genre || book.genre.includes(filter.genre))
+          !filter.title ||
+          book.title.includes(filter.title) ||
+          !filter.author ||
+          book.author.includes(filter.author) ||
+          !filter.genre ||
+          book.genre.includes(filter.genre)
       );
 
       const startIdx = (page - 1) * pageSize;

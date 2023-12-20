@@ -12,9 +12,9 @@ export const BookValidator = {
     title: Joi.string().required(),
   }),
   search: Joi.object({
-    title: Joi.string(),
-    author: Joi.string(),
-    genre: Joi.string(),
+    title: Joi.string().allow(""),
+    author: Joi.string().allow(""),
+    genre: Joi.string().allow(""),
     page: Joi.number().default(1),
     pageSize: Joi.number().default(10),
   }),
